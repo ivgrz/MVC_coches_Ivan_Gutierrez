@@ -125,7 +125,7 @@ Es donde el usuario puede interactuar con el programa a través de un menú.
         miView.menu();
     }
 
-# Pull request
+# Pull request y merge
 
 ![img.png](img.png)
 
