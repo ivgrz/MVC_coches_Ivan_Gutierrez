@@ -8,4 +8,27 @@ public class Coche {
         this.matricula = matricula;
         this.velocidad = 0;
     }
+    public String getMatricula() {
+        return matricula;
+    }
+    public String getModelo() {
+        return modelo;
+    }
+    public Integer getVelocidad() {
+        return velocidad;
+    }
+    public void aumentarVelocidad(int incremento) {
+        this.velocidad += incremento;
+    }
+    public void disminuirVelocidad(int decremento) {
+        this.velocidad -= decremento;
+    }
+    @Override
+    public String toString() {
+        return "Coche{" +
+                "matricula='" + matricula + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", velocidad=" + velocidad +
+                '}';
+    }
 }
