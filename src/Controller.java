@@ -1,6 +1,14 @@
 import java.lang.module.ModuleDescriptor;
 
 public class Controller {
+    // Instanciamos la vista y el modelo
+    View miView = new View();
+    Model miModel = new Model();
+
+    public Controller() {
+        this.miModel = new Model();
+        this.miView = new View();
+    }
     public static void main(String[] args) {
         // Instanciamos la vista y el modelo
         View miView = new View();
@@ -24,4 +32,24 @@ public class Controller {
             System.out.println("Error");
         } ;
     }
+    public void aumentarVelocidad(String matricula, int incremento) {
+        Coche coche = miModel.getCoche(matricula);
+        if (coche != null) {
+            miModel.cambiarVelocidad(matricula, coche.velocidad + incremento);
+            System.out.println("Velocidad aumentada correctamente.");
+        } else {
+            System.out.println("Coche no encontrado.");
+        }
+    }
+
+    public void disminuirVelocidad(String matricula, int decremento) {
+        Coche coche = miModel.getCoche(matricula);
+        if (coche != null) {
+            miModel.cambiarVelocidad(matricula, coche.velocidad - decremento);
+            System.out.println("Velocidad disminuida correctamente.");
+        } else {
+            System.out.println("Coche no encontrado.");
+        }
+    }
+
 }
