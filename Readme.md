@@ -124,4 +124,12 @@ Es donde el usuario puede interactuar con el programa a través de un menú.
         // Iniciar el menú
         miView.menu();
     }
+
+# Pull request
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
 }
