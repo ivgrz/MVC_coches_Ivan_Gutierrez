@@ -102,6 +102,8 @@ public class Model {
         }
     }
     public void Avanzar(int metros){
+        Scanner av = new Scanner(System.in);
+        Scanner v = new Scanner(System.in);
         int litros = 0;
         int pi = 0;
         int pa;
@@ -109,11 +111,11 @@ public class Model {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Introduce la cantidad de metros a avanzar:");
-        int opcion = sc.nextInt();
+        int opcion = av.nextInt();
         System.out.println("introduce la velocidad actual:");
-        int v = sc.nextInt();
+        int velocidad = v.nextInt();
         pa = pi + opcion;
-        if (pa > 100 || v > 60) {
+        if (pa > 100 || velocidad > 60) {
             reducirGasolina();
             System.out.println("reduciendo gasolina...");
         } else {

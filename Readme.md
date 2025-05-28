@@ -1,3 +1,15 @@
+# Funciones:
+- Las funciones del programa son Avanzar() y Poner Gasolina().
+- A diferencia del diagrama de flujo, este programa agrego una funcion *reducirGasolina* para disminuir la cantidad de gasolina, de
+acuerdo a los metros recorridos y la velocidad del coche.
+
+- La funcion poner Gasolina, recibe como parametro la cantidad de gasolina a agregar, la actualizacion de la cantidad de gasolina que hay
+y la cantidad de gasolina que ya posee el coche.
+
+- Realice el JavaDoc
+
+
+
 # Arquitectura MVC
 
 Aplicación que trabaja con objetos coches, modifica la velocidad y la muestra
