@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Clase encargada de manejar los datos
@@ -99,4 +100,22 @@ public class Model {
             }
         }
     }
+    public void Avanzar(int metros){
+        int pi = 0;
+        int pa;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce la cantidad de metros a avanzar:");
+        int opcion = sc.nextInt();
+        System.out.println("introduce la velocidad actual:");
+        int v = sc.nextInt();
+        pa = pi + opcion;
+        if (pa > 100 || v < 0) {
+
+        } else {
+            System.out.println(pa);
+        }
+    }
+
 }
