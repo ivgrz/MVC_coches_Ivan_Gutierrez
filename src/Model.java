@@ -5,6 +5,7 @@ import java.util.Scanner;
  * Clase encargada de manejar los datos
  */
 public class Model {
+    int litros = 0;
     static ArrayList<Coche> parking = new ArrayList<>();
 
     /**
@@ -87,7 +88,7 @@ public class Model {
         if (index >= 0 && index < parking.size()) {
             parking.get(index).disminuirVelocidad(decremento);
         } else {
-            System.out.println("Índice fuera de rango");
+            System.out.println("Índice fuera de alcance");
         }
     }
     public void mostrarTodosLosCoches(ArrayList<Coche> coches) {
@@ -100,7 +101,8 @@ public class Model {
             }
         }
     }
-    public void Avanzar(int metros){
+    public void Avanzar(ArrayList<Coche> coches,int metros){
+        int litros = 0;
         int pi = 0;
         int pa;
 
@@ -111,11 +113,27 @@ public class Model {
         System.out.println("introduce la velocidad actual:");
         int v = sc.nextInt();
         pa = pi + opcion;
-        if (pa > 100 || v < 0) {
-
+        if (pa > 100 || v > 60) {
+            reducirGasolina();
+            System.out.println("reduciendo gasolina...");
         } else {
             System.out.println(pa);
         }
     }
+        public boolean reducirGasolina() {
+            int LitrosGasolina = litros - 10;
+            System.out.println(LitrosGasolina);
+            return true;
+        }
+        public void PonerGasolina() {
 
+
+            Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce la cantidad de litros de gasolina que quieres repostar:");
+
+            int litrosr = sc.nextInt();
+            int LitrosGasolina = litros + litrosr;
+            System.out.println(LitrosGasolina);
+        }
 }
