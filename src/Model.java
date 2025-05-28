@@ -101,7 +101,7 @@ public class Model {
             }
         }
     }
-    public void Avanzar(ArrayList<Coche> coches,int metros){
+    public void Avanzar(int metros){
         int litros = 0;
         int pi = 0;
         int pa;
@@ -133,7 +133,7 @@ public class Model {
         System.out.println("Introduce la cantidad de litros de gasolina que quieres repostar:");
 
             int litrosr = sc.nextInt();
-            int LitrosGasolina = litros + litrosr;
+            int LitrosGasolina = this.litros + litrosr;
             System.out.println(LitrosGasolina);
         }
 }

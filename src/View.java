@@ -41,6 +41,8 @@ public class View {
             System.out.println("2. Aumentar velocidad");
             System.out.println("3. Disminuir velocidad");
             System.out.println("4. Mostrar todos los coches");
+            System.out.println("5. Avanzar");
+            System.out.println("6. Poner gasolina");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -79,6 +81,11 @@ public class View {
                 case 4:
                     miView.mostrarTodosLosCoches(miModel.getTodosLosCoches());
                     break;
+                case 5:
+                    miController.avanzar();
+                    break;
+                case 6:
+                    miController.Gasolina();
                 case 0:
                     System.out.println("Saliendo del programa...");
                     break;
