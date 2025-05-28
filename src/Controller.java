@@ -1,4 +1,5 @@
 import java.lang.module.ModuleDescriptor;
+import java.util.Scanner;
 
 public class Controller {
     // Instanciamos la vista y el modelo
@@ -51,5 +52,19 @@ public class Controller {
             System.out.println("Coche no encontrado.");
         }
     }
+    public void avanzar(){
+        Scanner sc = new Scanner(System.in);
+        int metros = 0;
+        System.out.println("Introduce los metros a avanzar:");
+        metros = sc.nextInt();
+        miModel.Avanzar(metros);
 
+    }
+    public void Gasolina(){
+        Scanner sc = new Scanner(System.in);
+        int litros = 0;
+        System.out.println("Introduce los litros de gasolina:");
+        litros = sc.nextInt();
+        miModel.PonerGasolina();
+    }
 }
