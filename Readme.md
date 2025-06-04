@@ -8,6 +8,14 @@ y la cantidad de gasolina que ya posee el coche.
 
 - Realice el JavaDoc
 
+# Observer:
+- Se usa el interface Observer para que se notifique el cambio en el deposito de gasolina del coche.
+- El interface Observer tiene un metodo llamado actualizar gasolina
+- La clase AlarmGasolina implementa el interface Observer y se encarga de mostrar un mensaje cuando la gasolina del coche es menor a 10 litros.
+- Esta clase se implementa en el metodo avanzar del coche, donde se verifica si la cantidad de gasolina es menor a 10 litros y se notifica al observer.
+- La clase Coche tiene un ArrayList de observers, donde se agregan los observers que se quieren notificar.
+
+
 
 
 # Arquitectura MVC
