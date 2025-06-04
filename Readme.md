@@ -27,7 +27,7 @@ y la cantidad de gasolina que ya posee el coche.
 
 # Diagrama de secuencia
 ```mermaid
-    Diagrama de secuencia
+sequenceDiagram
         participant Model
         participant Controller
         participant Observer
