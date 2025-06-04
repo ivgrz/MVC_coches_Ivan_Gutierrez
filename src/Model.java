@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -8,6 +9,26 @@ public class Model {
     int litros = 0;
     static ArrayList<Coche> parking = new ArrayList<>();
 
+
+
+
+    private List<Observer> observadores = new ArrayList<>();
+
+
+    private final int CAPACIDAD_MAXIMA = 50;
+
+
+
+    public void agregarObservador(Observer obs) {
+        observadores.add(obs);
+    }
+
+
+    private void notificarCambioGasolina(String mensaje) {
+        for (Observer obs : observadores) {
+            obs.actualizarGasolina(mensaje);
+        }
+    }
     /**
      * Crea un coche y lo mete en el parking
      * @param modelo del coche
@@ -101,41 +122,44 @@ public class Model {
             }
         }
     }
-    public void Avanzar(int metros){
-        Scanner av = new Scanner(System.in);
-        Scanner v = new Scanner(System.in);
-        int litros = 0;
-        int pi = 0;
-        int pa;
+    public void avanzar(int metros, int velocidad) {
+        int posicionInicial = 0;
+        int nuevaPosicion = posicionInicial + metros;
 
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Introduce la cantidad de metros a avanzar:");
-        int opcion = av.nextInt();
-        System.out.println("introduce la velocidad actual:");
-        int velocidad = v.nextInt();
-        pa = pi + opcion;
-        if (pa > 100 || velocidad > 60) {
+        if (nuevaPosicion > 100 || velocidad > 60) {
             reducirGasolina();
-            System.out.println("reduciendo gasolina...");
+            AlarmaGasolina alarma = new AlarmaGasolina();
+            alarma.setGasolinaActual(litros);
+
         } else {
-            System.out.println(pa);
+            System.out.println("Avanzando " + metros + " metros a velocidad " + velocidad + " km/h.");
         }
     }
-        public boolean reducirGasolina() {
-            int LitrosGasolina = litros - 10;
-            System.out.println(LitrosGasolina);
-            return true;
+    public boolean reducirGasolina() {
+        if (litros >= 10) {
+            litros -= 10;
+            System.out.println("Gasolina restante: " + litros + " litros.");
+        } else {
+            System.out.println("");
         }
-        public void PonerGasolina() {
+        return true;
+    }
 
-
-            Scanner sc = new Scanner(System.in);
-
-        System.out.println("Introduce la cantidad de litros de gasolina que quieres repostar:");
-
-            int litrosr = sc.nextInt();
-            int LitrosGasolina = this.litros + litrosr;
-            System.out.println(LitrosGasolina);
+    /**
+     * Reposta una cantidad de gasolina ingresada
+     * @param litrosRepostar litros a añadir
+     */
+    public void ponerGasolina(int litrosRepostar) {
+        if (litrosRepostar <= 0) {
+            System.out.println("Cantidad inválida. Ingrese un valor positivo.");
+            return;
         }
+        litros += litrosRepostar;
+        System.out.println("Se han añadido " + litrosRepostar + " litros. Total actual: " + litros + " litros.");
+
+    }
+
+    public int getGasolinaActual() {
+        return litros;
+    }
 }
