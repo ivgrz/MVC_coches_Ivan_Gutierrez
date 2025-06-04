@@ -16,9 +16,13 @@ y la cantidad de gasolina que ya posee el coche.
 - La clase Coche tiene un ArrayList de observers, donde se agregan los observers que se quieren notificar.
 
 # Comprobacion de la funcionalidad:
-![Captura de pantalla_2025-06-04_14-09-16.png](Imagenes/Captura%20de%20pantalla_2025-06-04_14-09-16.png)
+![-3.png](Imagenes/-3.png)
 
+![-2.png](Imagenes/-2.png)
 
+![-1.png](Imagenes/-1.png)
+
+![1.png](Imagenes/1.png)
 # Arquitectura MVC
 
 Aplicación que trabaja con objetos coches, modifica la velocidad y la muestra

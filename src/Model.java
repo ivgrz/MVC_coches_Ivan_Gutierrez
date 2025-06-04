@@ -130,8 +130,11 @@ public class Model {
             reducirGasolina();
             System.out.println("Avanzando " + metros + " metros a velocidad " + velocidad + " km/h, pero se ha reducido la gasolina.");
             notificarCambioGasolina("Gasolina reducida tras avanzar " + metros + " metros.");
-            AlarmaGasolina alarma = new AlarmaGasolina();
-            alarma.actualizarGasolina("quedan " + litros + " litros de gasolina, reposta pronto.");
+            if (litros < 10) {
+                AlarmaGasolina alarmaGasolina = new AlarmaGasolina();
+                alarmaGasolina.actualizarGasolina("Alerta: Gasolina baja, quedan " + litros + " litros, repostar inmediatamente.");
+            }
+
 
         } else {
             System.out.println("Avanzando " + metros + " metros a velocidad " + velocidad + " km/h.");
