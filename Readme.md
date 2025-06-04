@@ -15,7 +15,8 @@ y la cantidad de gasolina que ya posee el coche.
 - Esta clase se implementa en el metodo avanzar del coche, donde se verifica si la cantidad de gasolina es menor a 10 litros y se notifica al observer.
 - La clase Coche tiene un ArrayList de observers, donde se agregan los observers que se quieren notificar.
 
-
+# Comprobacion de la funcionalidad:
+![Captura de pantalla_2025-06-04_14-09-16.png](Imagenes/Captura%20de%20pantalla_2025-06-04_14-09-16.png)
 
 
 # Arquitectura MVC
