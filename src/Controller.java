@@ -3,16 +3,17 @@ import java.util.Scanner;
 
 public class Controller {
     // Instanciamos la vista y el modelo
-    View miView = new View();
+    View miView = new View(this);
     Model miModel = new Model();
 
     public Controller() {
         this.miModel = new Model();
-        this.miView = new View();
+        this.miView = new View(this);
     }
+
     public static void main(String[] args) {
         // Instanciamos la vista y el modelo
-        View miView = new View();
+        View miView = new View(null);
         Model miModel = new Model();
 
         // Crear tres coches
@@ -31,8 +32,10 @@ public class Controller {
             System.out.println("Correcto");
         } else {
             System.out.println("Error");
-        } ;
+        }
+        ;
     }
+
     public void aumentarVelocidad(String matricula, int incremento) {
         Coche coche = miModel.getCoche(matricula);
         if (coche != null) {
@@ -52,19 +55,18 @@ public class Controller {
             System.out.println("Coche no encontrado.");
         }
     }
-    public void avanzar(){
-        Scanner sc = new Scanner(System.in);
-        int metros = 0;
-        System.out.println("Introduce los metros a avanzar:");
-        metros = sc.nextInt();
-        miModel.Avanzar(metros);
+
+    public void avanzar(int metros, int velocidad) {
+        miModel.avanzar(metros, velocidad);
+    }
+
+    public void Gasolina(int litros) {
+        miModel.ponerGasolina(litros);
+    }
+
+    public int consultarGasolina() {
+        return miModel.getGasolinaActual();
 
     }
-    public void Gasolina(){
-        Scanner sc = new Scanner(System.in);
-        int litros = 0;
-        System.out.println("Introduce los litros de gasolina:");
-        litros = sc.nextInt();
-        miModel.PonerGasolina();
-    }
 }
+

@@ -4,7 +4,13 @@ import java.util.Scanner;
 /**
  * Clase encargada de la interacción con el usuario
  */
-public class View {
+public class View implements Observer {
+    private final Controller controller;
+    private final Scanner sc = new Scanner(System.in);
+
+    public View(Controller controller) {
+        this.controller = controller;
+    }
     /**
      * Muestra la velocidad de un coche
      * @param matricula del coche
@@ -25,79 +31,103 @@ public class View {
             }
         }
     }
-    public static void menu() {
-        Scanner scanner = new Scanner(System.in);
+    public void menu() {
 
-        Model miModel = new Model();
-        View miView = new View();
-        Controller miController = new Controller();
         int opcion;
-
-
-
         do {
-            System.out.println("--- Menú Principal ---");
-            System.out.println("1. Crear coche");
-            System.out.println("2. Aumentar velocidad");
-            System.out.println("3. Disminuir velocidad");
-            System.out.println("4. Mostrar todos los coches");
-            System.out.println("5. Avanzar");
-            System.out.println("6. Poner gasolina");
+            System.out.println("\n--- MENÚ ---");
+
+            System.out.println("1. Aumentar velocidad");
+            System.out.println("2. Disminuir velocidad");
+            System.out.println("3. Mostrar gasolina actual");
+            System.out.println("4. Avanzar");
+            System.out.println("5. Repostar gasolina");
             System.out.println("0. Salir");
-            System.out.print("Elige una opción: ");
-
-            opcion = scanner.nextInt();
-
+            System.out.print("Seleccione una opción: ");
+            opcion = sc.nextInt();
 
             switch (opcion) {
 
                 case 1:
-                    System.out.print("Introduce el modelo del coche: ");
-                    String modelo = scanner.nextLine();
-                    System.out.print("Introduce la matrícula del coche: ");
-                    String matricula = scanner.nextLine();
-                    miModel.crearCoche(modelo, matricula);
-                    System.out.println("Coche creado correctamente.");
+                    modificarVelocidad(true);
                     break;
                 case 2:
-                    System.out.print("Introduce la matrícula del coche: ");
-                    String matriculaAumentar = scanner.nextLine();
-                    System.out.print("Introduce la velocidad a aumentar: ");
-                    int velocidadAumentar = scanner.nextInt();
-                    scanner.nextLine(); // Consumir el salto de línea
-                    miController.aumentarVelocidad(matriculaAumentar, miModel.getVelocidad(matriculaAumentar) + velocidadAumentar);
-                    System.out.println("Velocidad aumentada correctamente.");
+                    modificarVelocidad(false);
                     break;
                 case 3:
-                    System.out.print("Introduce la matrícula del coche: ");
-                    String matriculaDisminuir = scanner.nextLine();
-                    System.out.print("Introduce la velocidad a disminuir: ");
-                    int velocidadDisminuir = scanner.nextInt();
-                    scanner.nextLine(); // Consumir el salto de línea
-                    miController.disminuirVelocidad(matriculaDisminuir, miModel.getVelocidad(matriculaDisminuir) - velocidadDisminuir);
-                    System.out.println("Velocidad disminuida correctamente.");
+                    mostrarGasolina();
                     break;
-
                 case 4:
-                    miView.mostrarTodosLosCoches(miModel.getTodosLosCoches());
+                    avanzar();
                     break;
                 case 5:
-                    miController.avanzar();
+                    repostar();
                     break;
-                case 6:
-                    miController.Gasolina();
                 case 0:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("Saliendo del sistema...");
                     break;
                 default:
-                    System.out.println("Opción no válida");
-                    break;
-
-
+                    System.out.println("Opción inválida.");
             }
-
         } while (opcion != 0);
-
     }
 
+    private void modificarVelocidad(boolean aumentar) {
+
+        System.out.print("Introduce la matrícula del coche: ");
+        String matricula = sc.nextLine().trim();
+
+        System.out.print("Introduce el valor a " + (aumentar ? "aumentar" : "disminuir") + ": ");
+        int valor = sc.nextInt();
+
+        if (aumentar) {
+            controller.aumentarVelocidad(matricula, valor);
+        } else {
+            controller.disminuirVelocidad(matricula, valor);
+        }
+    }
+
+
+
+    private void mostrarGasolina() {
+        int gasolina = controller.consultarGasolina();
+        System.out.println("Gasolina actual: " + gasolina + " litros.");
+    }
+
+    private void avanzar() {
+        System.out.print("Introduce los metros a avanzar: ");
+        int metros = sc.nextInt();
+
+        System.out.print("Introduce la velocidad actual (km/h): ");
+        int velocidad = sc.nextInt();
+
+        controller.avanzar(metros, velocidad);
+    }
+
+    private void repostar() {
+        System.out.print("Introduce los litros de gasolina a repostar: ");
+        int litros = sc.nextInt();
+
+        controller.Gasolina(litros);
+    }
+    public void mostrarMensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
+    @Override
+    public void actualizarGasolina(String mensaje) {
+        System.out.println("Alerta de Gasolina: " + mensaje);
+
+
+
+        String[] partesDelMensaje = mensaje.split(":");
+
+
+        String textoDelNivel = partesDelMensaje[1].trim();
+        int nivelDeGasolina = Integer.parseInt(textoDelNivel);
+
+
+        if (nivelDeGasolina < 10) {
+            System.out.println("[AVISO] Quedan " + nivelDeGasolina + " litros de gasolina. Recomendado repostar pronto.");
+        }
+    }
 }
