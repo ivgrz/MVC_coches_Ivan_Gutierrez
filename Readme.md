@@ -23,6 +23,32 @@ y la cantidad de gasolina que ya posee el coche.
 ![-1.png](Imagenes/-1.png)
 
 ![1.png](Imagenes/1.png)
+
+
+# Diagrama de secuencia
+```mermaid
+    Diagrama de secuencia
+        participant Model
+        participant Controller
+        participant Observer
+        participant View
+        
+        
+        Controller->>Model: Actualiza datos de gasolina
+        Model ->>Observer: Notifica cambio de gasolina
+        Observer ->> Model: Solicita datos actualizados
+        Observer ->> View: Muestra mensaje de alerta
+        
+
+
+```
+
+
+
+
+
+
+
 # Arquitectura MVC
 
 Aplicación que trabaja con objetos coches, modifica la velocidad y la muestra
