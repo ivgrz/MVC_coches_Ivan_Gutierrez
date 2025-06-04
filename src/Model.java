@@ -128,19 +128,22 @@ public class Model {
 
         if (nuevaPosicion > 100 || velocidad > 60) {
             reducirGasolina();
+            System.out.println("Avanzando " + metros + " metros a velocidad " + velocidad + " km/h, pero se ha reducido la gasolina.");
+            notificarCambioGasolina("Gasolina reducida tras avanzar " + metros + " metros.");
             AlarmaGasolina alarma = new AlarmaGasolina();
-            alarma.setGasolinaActual(litros);
+            alarma.actualizarGasolina("quedan " + litros + " litros de gasolina, reposta pronto.");
 
         } else {
             System.out.println("Avanzando " + metros + " metros a velocidad " + velocidad + " km/h.");
         }
+
     }
     public boolean reducirGasolina() {
         if (litros >= 10) {
             litros -= 10;
             System.out.println("Gasolina restante: " + litros + " litros.");
         } else {
-            System.out.println("");
+            System.out.println("No hay suficiente gasolina. Gasolina actual: " + litros + " litros.");
         }
         return true;
     }
@@ -162,4 +165,5 @@ public class Model {
     public int getGasolinaActual() {
         return litros;
     }
+
 }
